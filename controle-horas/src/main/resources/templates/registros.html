@@ -56,6 +56,36 @@
             </form>
         </div>
     </div>
+    <form method="get" action="/registros" class="row g-3 mb-3">
+
+        <div class="col-md-3">
+            <label class="form-label">Mês</label>
+            <select name="mes" class="form-select">
+                <option value="">Todos</option>
+                <option th:each="m : ${#numbers.sequence(1,12)}"
+                        th:value="${m}"
+                        th:text="${m}"
+                        th:selected="${m == mes}">
+                </option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Ano</label>
+            <input type="number"
+                   name="ano"
+                   class="form-control"
+                   th:value="${ano}"
+                   placeholder="2025">
+        </div>
+
+        <div class="col-md-3 align-self-end">
+            <button class="btn btn-primary">Filtrar</button>
+            <a href="/registros" class="btn btn-secondary">Limpar</a>
+        </div>
+
+    </form>
+
 
     <!-- TABELA -->
     <div class="card">
@@ -81,6 +111,15 @@
                     <td th:text="${r.data}"></td>
                     <td th:text="${r.descricao}"></td>
                     <td th:text="${r.horas}"></td>
+                    <td>
+                        <form th:action="@{/registros/excluir/{id}(id=${r.id})}"
+                              method="post"
+                              onsubmit="return confirm('Deseja realmente excluir?')">
+                            <button class="btn btn-danger btn-sm">
+                                🗑 Apagar
+                            </button>
+                        </form>
+                    </td>
                     <td>
                         <a th:if="${r.nomeArquivo != null}"
                            th:href="@{/uploads/{file}(file=${r.nomeArquivo})}"

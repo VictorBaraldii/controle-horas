@@ -27,4 +27,13 @@ public class RegistroHoraService {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Registro não encontrado"));
     }
+
+    public void excluir(Long id) {
+        repository.deleteById(id);
+    }
+
+    public List<RegistroHora> listarPorMes(int mes, int ano) {
+        return repository.buscarPorMesAno(mes, ano);
+    }
+
 }
