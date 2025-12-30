@@ -1,0 +1,13 @@
+package io.github.victorbaraldii.controle.controle_horas;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ControleHorasApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ControleHorasApplication.class, args);
+	}
+
+}
